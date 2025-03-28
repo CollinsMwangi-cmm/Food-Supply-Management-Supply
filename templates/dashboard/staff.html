@@ -1,0 +1,63 @@
+{% extends 'partials/base.html' %}
+{% block title %} Product Page {% endblock %}
+
+{% block content %}
+{% include 'partials/nav.html' %}
+
+{% include 'partials/topnav.html' %}
+
+<div class="container">
+    <div class="row my-4">
+  {%comment%}      <div class="col-md-4">
+            <div class="border bg-white p-3">
+                <h4>Add New Staff</h4>
+                <hr>
+                <form   method="post">
+                   {%csrf_token%}
+                   <p>{{form.username.label}} {{form.username}}</p>
+                   <p>{{form.password1.label}} {{form.password1}}</p>
+                   <p>{{form.password1.label}} {{form.password2}}</p>
+                    <button type="submit" class="btn">Register</button>
+                </form>
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+               
+            </div>
+            {%endcomment%}
+        </div>
+        <div class="col-md-8">
+            <table class="table bg-white">
+                <thead class="bg-info">
+                    <tr class="text-white ">
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>Weekly Report</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Staff</th>
+            <th>Order Quantity</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+            <tr>
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.staff.username }}</td>
+                <td>{{ order.order_quantity }}</td>
+                <td>{{ order.date }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>

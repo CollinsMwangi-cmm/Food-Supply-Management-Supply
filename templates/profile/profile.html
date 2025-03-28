@@ -1,0 +1,86 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'partials/staff_nav.html' %}
+
+<div class="container">
+
+    <div class='profile-main-content'>
+        <h1 class="profile-title">User Profile</h1>
+        
+        <h3 class="profile-subtitle">Your Information</h3>
+        <p class="profile-info"><strong>Username:</strong> {{ form.username.value }}</p>
+        <p class="profile-info"><strong>Email:</strong> {{ form.email.value }}</p>
+
+        <form method="post" class="profile-form-container">
+            {% csrf_token %}
+            <h2 class="profile-form-title">Edit Profile</h2>
+            {% if form.non_field_errors %}
+                <div class="profile-error-message">{{ form.non_field_errors }}</div>
+            {% endif %}
+            {% for field in form %}
+                <div class="profile-form-group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}  <!-- Render the field directly -->
+                    {% if field.errors %}
+                        <div class="profile-error-message">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="profile-btn" >Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex; /* Use flexbox for layout */
+        gap: 20px; /* Space between aside and main content */
+    }
+
+    .profile-container {
+        display: flex; /* Use flexbox for layout */
+        gap: 20px; /* Space between aside and main content */
+    }
+
+    .profile-main-content {
+        flex: 1; /* Allow main content to take available space */
+        margin-left: 20px; /* Space between aside and main content */
+        padding: 20px; /* Padding inside the main content */
+        background-color: #f9f9f9; /* Light background color */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        transition: box-shadow 0.3s; /* Smooth shadow transition */
+    }
+
+    .profile-form-group {
+        margin-bottom: 15px; /* Space between form fields */
+    }
+
+    .profile-error-message {
+        color: red; /* Red color for error messages */
+        font-size: 0.9em; /* Slightly smaller font */
+        margin-top: 5px; /* Space above error messages */
+    }
+
+    .profile-btn {
+        background-color: #4CAF50; /* Green */
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+        width: 100%; /* Full width for the button */
+    }
+
+    .profile-btn:hover {
+        background-color: #45a049; /* Darker green */
+    }
+</style>
+
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+body{
+    background-image: url('static/images/warehouse.jpeg');
+    background-size: cover;
+    background-position : center;
+    background-repeat : no-repeat
+
+}
+
+.my-card:hover{
+    transform: scale(1.1);
+    transition: 0.2s ease-in-out;
+}

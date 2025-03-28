@@ -1,0 +1,30 @@
+{% extends 'partials/base.html' %}
+{% block title %} Report Page {% endblock %}
+
+{% block content %}
+{% include 'partials/nav.html' %}
+
+{% include 'partials/topnav.html' %}
+
+
+<div class="container">
+
+    <h1>Generate Report</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Generate Report</button>
+</form>
+
+{% if report_html %}
+    <h2>Report Preview</h2>
+    <div>
+        {{ report_html|safe }}  <!-- Render the report HTML -->
+    </div>
+    <a href="{% url 'download-report' report_type %}">Download PDF</a>
+{% endif %}
+    
+</div>
+
+{%endblock%}
